@@ -56,12 +56,15 @@ int main()
     // Test populating 2D arrays and check and loop until Lo Shu
     int square[3][3];
     int previousNums[10];
+    int counter;
 
     srand(time(NULL));
 
-
+    // randomizes square until it reaches a Lo Shu Square
     while(true)
     {
+        counter++;
+
         // check if rows == 15
         for (size_t row = 0; row < 3; row++)
         {
@@ -107,7 +110,7 @@ int main()
 
     }
 
-    // printf("Squares made until Lo Shu Square: ");
+    printf("Squares randomized until Lo Shu Square Success: %d\n", counter);
     printf("[%d, %d, %d]\n", square[0][0], square[0][1], square[0][2]);
     printf("[%d, %d, %d]\n", square[1][0], square[1][1], square[1][2]);
     printf("[%d, %d, %d]\n", square[2][0], square[2][1], square[2][2]);
