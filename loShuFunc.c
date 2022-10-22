@@ -1,8 +1,6 @@
 #include <stdlib.h> 
 #include <stdio.h>
-#include <time.h>
-
-typedef enum { false, true } bool;
+#include <stdbool.h>
 
 
 const int N = 3;
@@ -72,61 +70,8 @@ bool isLoShuMagicSquare(int square[N][N])
     // printf("Diagonal 1: %d\nDiagonal 2: %d\n", diagSum1, diagSum2);
     if(diagSum1 != 15 || diagSum2 != 15)
     {
-
+        return false;   
     }
     
-
     return true;
-}
-
-// function that populates an empty 2D array with random numbers
-int** populateSquare()
-{
-    srand(time(NULL));
-    int previousNums[] = {0, 0, 0, 0, 0, 0, 0, 0, 0};
-    int **square;
-
-    square = malloc(sizeof(int*) * N);
-    for(size_t i = 0; i < 3; i++) { 
-        square[i] = malloc(sizeof(int*) * 3); 
-    } 
-
-    // check if rows == 15
-    for (size_t row = 0; row < N; row++)
-    {
-        /* code */
-        for (size_t col = 0; col < N; col++)
-        {
-            /* code */
-            int randomNum = rand() % 9 + 1;
-            bool isDuplicate = false;
-
-            for (size_t i = 1; i <= 9; i++)
-            {
-                /* code */
-                if (randomNum == previousNums[i])
-                {
-                    isDuplicate = true;
-                }
-            }
-            
-            if(isDuplicate)
-            {
-                col--;
-            }
-            else
-            {
-                previousNums[randomNum] = randomNum;
-                square[row][col] = randomNum;
-            }
-        }
-    }
-
-    return square;
-}
-
-void destroySquare(int** square)
-{
-    free(*square);
-    free(square);
 }

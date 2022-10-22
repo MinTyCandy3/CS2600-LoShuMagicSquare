@@ -1,7 +1,7 @@
 #include <stdlib.h> 
 #include <stdio.h>
-
-typedef enum { false, true } bool;
+#include <time.h>
+#include <stdbool.h>
 
 /*
 
@@ -13,9 +13,10 @@ gcc loShuDemo.c loShuFunc.c
 // code main here
 int main()
 {
+    // defined in loShuFunc.c
     bool isLoShuMagicSquare(int square[3][3]);
-    int** populateSquare();
-    void destroySquare();
+    int** populateRandomSquare();
+    void destroySquare(int** square);
 
 
     // Test a Lo Shu Square here
@@ -53,23 +54,63 @@ int main()
 
 
     // Test populating 2D arrays and check and loop until Lo Shu
-    int ** random;
-    random = populateSquare();
+    int square[3][3];
+    int previousNums[10];
 
-    printf("[%d, %d, %d]\n", random[0][0], random[0][1], random[0][2]);
-    printf("[%d, %d, %d]\n", random[1][0], random[1][1], random[1][2]);
-    printf("[%d, %d, %d]\n", random[2][0], random[2][1], random[2][2]);
-    
-    // printf("Random Square: ");
-    // if(isLoShuMagicSquare(random))
-    // {
-    //     printf("True\n");
-    // }
-    // else
-    // {
-    //     printf("False\n");
-    // }
+    srand(time(NULL));
 
+
+    while(true)
+    {
+        // check if rows == 15
+        for (size_t row = 0; row < 3; row++)
+        {
+            /* code */
+            for (size_t col = 0; col < 3; col++)
+            {
+                /* code */
+                int randomNum = rand() % 9 + 1;
+                bool isDuplicate = false;
+
+                for (size_t i = 0; i < 9; i++)
+                {
+                    /* code */
+                    if (randomNum == previousNums[i])
+                    {
+                        isDuplicate = true;
+                    }
+                }
+                
+                if(isDuplicate)
+                {
+                    col--;
+                }
+                else
+                {
+                    previousNums[randomNum] = randomNum;
+                    square[row][col] = randomNum;
+                }
+            }
+        }
+
+        if(isLoShuMagicSquare(square))
+        {
+            break;
+        }
+
+        // resets previousNums
+        for (size_t i = 0; i < 9; i++)
+        {
+            /* code */
+            previousNums[i] = 0;
+        }
+
+    }
+
+    // printf("Squares made until Lo Shu Square: ");
+    printf("[%d, %d, %d]\n", square[0][0], square[0][1], square[0][2]);
+    printf("[%d, %d, %d]\n", square[1][0], square[1][1], square[1][2]);
+    printf("[%d, %d, %d]\n", square[2][0], square[2][1], square[2][2]);
 
     return EXIT_SUCCESS;
 }
