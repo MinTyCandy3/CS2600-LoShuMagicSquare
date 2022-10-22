@@ -14,6 +14,8 @@ gcc loShuDemo.c loShuFunc.c
 int main()
 {
     bool isLoShuMagicSquare(int square[3][3]);
+    int** populateSquare();
+    void destroySquare();
 
 
     // Test a Lo Shu Square here
@@ -50,7 +52,24 @@ int main()
     printf("\n");
 
 
+    // Test populating 2D arrays and check and loop until Lo Shu
+    int ** random;
+    random = populateSquare();
+
+    printf("[%d, %d, %d]\n", random[0][0], random[0][1], random[0][2]);
+    printf("[%d, %d, %d]\n", random[1][0], random[1][1], random[1][2]);
+    printf("[%d, %d, %d]\n", random[2][0], random[2][1], random[2][2]);
+    
+    // printf("Random Square: ");
+    // if(isLoShuMagicSquare(random))
+    // {
+    //     printf("True\n");
+    // }
+    // else
+    // {
+    //     printf("False\n");
+    // }
+
+
     return EXIT_SUCCESS;
 }
-
-// Test populating 2D arrays and check and loop until Lo Shu
