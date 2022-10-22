@@ -1,19 +1,38 @@
+#include <stdlib.h> 
+#include <stdio.h>
+
+typedef enum { false, true } bool;
+
+/*
+
+gcc loShuDemo.c loShuFunc.c
+
+*/
 
 
 // code main here
+int main()
+{
+    bool isLoShuMagicSquare(int square[3][3]);
 
-// Test a Lo Shu Square here
 
-// Test a non-Lo Shu Square here
+    // Test a Lo Shu Square here
+    int ls[][3] = {
+        {4, 9, 2},
+        {3, 5, 7},
+        {8, 1, 6},
+    };
+
+    bool isLoShu = isLoShuMagicSquare(ls);
+
+    // Test a non-Lo Shu Square here
+    int nls[][3] = {
+        {4, 9, 2},
+        {3, 5, 7},
+        {8, 1, 6},
+    };
+
+    return EXIT_SUCCESS;
+}
 
 // Test populating 2D arrays and check and loop until Lo Shu
-
-
-// add header file to define/struct Lo Shu Magic Square
-
-
-// functions here (maybe in a separate file)
-
-// ** create a function that takes in a 2D array, and determine if it's a Lo Shu
-
-// function that populates an empty 2D array with random numbers
